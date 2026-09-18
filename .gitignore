@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.vite/
+*.log
+backend/target/
+.env.local.ps1
+*.db
+*.db-shm
+*.db-wal

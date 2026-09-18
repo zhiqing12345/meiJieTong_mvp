@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: meijietong
+  datasource:
+    url: jdbc:sqlite:${meijietong.data-dir}/meijietong.db
+    driver-class-name: org.sqlite.JDBC
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      max-file-size: 8MB
+      max-request-size: 82MB
+  ai:
+    openai:
+      api-key: ${MEIJIETONG_AI_API_KEY:disabled}
+      base-url: ${MEIJIETONG_AI_BASE_URL:https://bmc-llm-relay.bluemediagroup.cn}
+      chat:
+        options:
+          model: ${MEIJIETONG_AI_MODEL:deepseek-flash}
+          temperature: 0
+
+meijietong:
+  ai:
+    api-key: ${MEIJIETONG_AI_API_KEY:disabled}
+  feishu:
+    app-id: ${MEIJIETONG_FEISHU_APP_ID:}
+    app-secret: ${MEIJIETONG_FEISHU_APP_SECRET:}
+    table-url: ${MEIJIETONG_FEISHU_TABLE_URL:}
+
+logging:
+  level:
+    org.springframework.ai: WARN
